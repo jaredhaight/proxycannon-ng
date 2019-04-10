@@ -91,17 +91,6 @@ ip rule add from 10.10.10.0/24 table loadb
 DEFAULTETH=`ip route | grep default | sed -e "s/^.*dev.//" -e "s/.proto.*//"`
 iptables -t nat -A POSTROUTING -o $DEFAULTETH -j MASQUERADE
 
-#######################################
-# collect vpn config files to one place
-#######################################
-mkdir ~/proxycannon-vpn-client
-cp /etc/openvpn/easy-rsa/keys/ta.key ~/proxycannon-vpn-client/
-cp /etc/openvpn/easy-rsa/keys/ca.crt ~/proxycannon-vpn-client/
-cp /etc/openvpn/easy-rsa/keys/client01.crt ~/proxycannon-vpn-client/
-cp /etc/openvpn/easy-rsa/keys/client01.key ~/proxycannon-vpn-client/
-mv ~/proxycannon-client.conf ~/proxycannon-vpn-client/
-chown -R $SUDO_USER:$SUDO_USER ~/proxycannon-vpn-client
-
 ############################
 # post install instructions
 ############################
